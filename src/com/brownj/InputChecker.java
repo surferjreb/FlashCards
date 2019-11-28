@@ -2,9 +2,7 @@ package com.brownj;
 
 public class InputChecker {
 
-    InputChecker(){
-
-    }
+    //InputChecker(){}//constructor
 
     boolean checkValues(int cardCount, String operator, int digitCount){
         if(digitCount > 0){
