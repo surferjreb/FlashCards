@@ -1,55 +1,116 @@
 package com.brownj;
 
+import java.util.InputMismatchException;
+
 public class InputChecker {
+
+    private int cardCount;
+    private String operator;
+    private int digitCount;
+
+    private final int DEFAULT = 0;
+
+    private static enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE};
 
     //InputChecker(){}//constructor
 
-    boolean checkValues(int cardCount, String operator, int digitCount){
-        if(digitCount > 0){
-            if(checkOperatorValue(operator))
-            {
-                if(checkDigitCount(digitCount, operator)){
-                    return true;
-                }
+    boolean checkValues(String[] args){
+        while(args != null) {
 
+            switch(args.length){
+                case 2:
+                        setValues(args);
+                        return true;
+                case 3:
+                        setAdditionValues(args);
+                        return true;
+                default:
+                        displayUsage();
+                        return false;
             }
         }
-        else if(checkCardCount(cardCount)){
-            if(checkOperatorValue(operator)) {
-                return true;
-            }
+
+        return false;
+    }
+
+    private void setValues(String[] args){
+        try {
+            this.cardCount = checkCardCount(args[0]);
+            this.operator = checkOperator(args[1]);
+            this.digitCount = DEFAULT;
+        }
+        catch(InputMismatchException e){
+            e.printStackTrace();
+            displayUsage();
+        }
+    }
+
+    private void setAdditionValues(String[] args) {
+        try {
+            this.cardCount = checkCardCount(args[0]);
+            this.operator = checkOperator(args[1]);
+            this.digitCount = checkDigitNumber(args[2]);
+        }
+        catch(InputMismatchException b){
+            b.printStackTrace();
+            displayUsage();
         }
 
-
-        return false;
     }
+    private int checkCardCount(String number){
+        int temp = 0;
 
-    private boolean checkOperatorValue(String operator){
-
-        if(operator.equals("add") || operator.equals("subtract") || operator.equals("multiply")
-                || operator.equals("divide"))
-            return true;
-
-        return false;
-    }
-
-    private boolean checkDigitCount(int digitCount, String operator){
-
-        if(operator.equals("add")){
-            return true;
+        try{
+            temp = Integer.parseInt(number);
+            return temp;
+        }
+        catch(NumberFormatException e){
+            throw new InputMismatchException();
         }
 
-        return false;
     }
 
-    private boolean checkCardCount(int cardCount){
-        if(cardCount > 0)
-            return true;
+    private String checkOperator(String operator) throws InputMismatchException{
+        String temp = operator.toUpperCase();
 
-        return false;
+            for (OPERATOR value : OPERATOR.values()) {
+
+                if(temp.equals(String.valueOf(value)))
+                    return temp;
+
+            }//end for
+
+        throw new InputMismatchException();
+
     }
 
-    public void displayUsage(){
+    private int checkDigitNumber(String number){
+        int temp = 0;
+
+        try{
+            temp = Integer.parseInt(number);
+            return temp;
+        }
+        catch(NumberFormatException e){
+            throw new InputMismatchException();
+        }
+
+    }
+//-----------------------------------------
+    int getCardCount() {
+        return cardCount;
+    }
+//-----------------------------------------
+    String getOperator() {
+        return operator;
+    }
+//-----------------------------------------
+    int getDigitCount() {
+        return digitCount;
+    }
+//-----------------------------------------
+
+    private void displayUsage(){
         System.out.println();
         System.out.println("Usage: java FlashCardDriver <#cards> <operator> <#digits>");
         System.out.println();

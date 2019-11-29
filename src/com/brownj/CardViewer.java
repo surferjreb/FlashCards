@@ -2,6 +2,7 @@ package com.brownj;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CardViewer {
     private final String TITLE = "Flash Math";
@@ -9,34 +10,41 @@ public class CardViewer {
     private final int HEIGHT = 300;
     private JFrame myFrame;
     private JLabel cardCount, mathProblem;
+    private int index;
 
-    private FlashCard myCard;
+    private ArrayList<FlashCard> myCards;
 
-    public CardViewer(FlashCard myCard){
+    CardViewer(ArrayList<FlashCard> myCards){
         myFrame = new JFrame(TITLE);
-        this.myCard = myCard;
+        this.myCards = myCards;
+        this.index = 0;
     }
 
     public void runViewCard(){
-        setCardElements();
+        int cardIndex = setCardElements();
         myFrame.setVisible(true);
     }
 
-    private void setCardElements(){
+    private int setCardElements(){
         //this is temp
-        cardCount = new JLabel(myCard.getCount());
-        mathProblem = new JLabel("3 + 5");
-        JButton nextButton = new JButton("Next");
 
-        myFrame.setSize(WIDTH,HEIGHT);
+            index = Integer.parseInt(myCards.get(index).getCardNumber()) + 1;
 
-        myFrame.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
-        //setVisible(true);
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.add(cardCount);
-        myFrame.add(mathProblem);
-        myFrame.add(nextButton);
+            cardCount = new JLabel(index + " of " + myCards.size());
+            mathProblem = new JLabel(myCards.get(index - 1).getMathProblem());
 
+            JButton nextButton = new JButton("Next");
+
+            myFrame.setSize(WIDTH, HEIGHT);
+
+            myFrame.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
+            //setVisible(true);
+            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            myFrame.add(cardCount);
+            myFrame.add(mathProblem);
+            myFrame.add(nextButton);
+
+            return index;
     }
 //    JFrame frame = new JFrame("Will this Work?");
 //    final JTextField text = new JTextField();

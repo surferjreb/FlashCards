@@ -1,36 +1,27 @@
 package com.brownj;
 
+import java.util.ArrayList;
+
 public class Controller {
 
-    private FlashCard myCards;
+    private FlashCard myCard;
     private CardViewer myView;
     private InputChecker checker;
+
     private int cardCount;
     private String operator;
     private int digitCount;
 
+    private ArrayList<FlashCard> myFlashCards;
 
     Controller(){
-        checker = new InputChecker();
+        myFlashCards = new ArrayList<FlashCard>();
     }
 
-    void runController(int cardCount, String operator, int digitCount){
-        this.cardCount = cardCount;
-        this.operator = operator;
-        this.digitCount = digitCount;
-        boolean runIt;
+    void runController(InputChecker myInput){
 
         try {
-            runIt = checker.checkValues(cardCount, operator, digitCount);
-            if(runIt){
-                myCards = new FlashCard();
-                myView = new CardViewer(myCards);
-                myView.runViewCard();
-            }
-            else{
-                checker.displayUsage();
-            }
-
+              generateFlashCard(myInput);
 
         }
         catch(Exception e){
@@ -39,4 +30,28 @@ public class Controller {
 
     }//end runController
 
+    private void generateFlashCard(InputChecker myInput){
+        this.cardCount = myInput.getCardCount();
+        this.operator = myInput.getOperator();
+        this.digitCount = myInput.getDigitCount();
+
+
+        for(int i = 0; i < cardCount; i++){
+            myCard = new FlashCard(i, operator, digitCount);
+            myCard.runFlashCards();
+            myFlashCards.add(myCard);
+        }
+
+        presentFlashCards();
+    }
+
+    private void presentFlashCards(){
+
+
+            myView = new CardViewer(myFlashCards);
+            myView.runViewCard();
+
+
+        //myView.getResultCard
+    }
 }//end class
