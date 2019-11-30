@@ -111,7 +111,7 @@ class InputChecker {
     }
 //-----------------------------------------
 
-    private void displayUsage(){
+    public void displayUsage(){
         System.out.println();
         System.out.println("Usage: java FlashCardDriver <#cards> <operator> <#digits>");
         System.out.println();

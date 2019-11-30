@@ -20,12 +20,7 @@ class Controller {
 
     void runController(InputChecker myInput){
 
-        try {
               generateFlashCard(myInput);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
 
     }//end runController
 
