@@ -22,7 +22,6 @@ public class Controller {
 
         try {
               generateFlashCard(myInput);
-
         }
         catch(Exception e){
             e.printStackTrace();
@@ -37,7 +36,7 @@ public class Controller {
 
 
         for(int i = 0; i < cardCount; i++){
-            myCard = new FlashCard(i, operator, digitCount);
+            myCard = new FlashCard(operator, digitCount);
             myCard.runFlashCards();
             myFlashCards.add(myCard);
         }
@@ -46,12 +45,7 @@ public class Controller {
     }
 
     private void presentFlashCards(){
-
-
             myView = new CardViewer(myFlashCards);
             myView.runViewCard();
-
-
-        //myView.getResultCard
     }
 }//end class

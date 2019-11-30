@@ -57,6 +57,7 @@ public class InputChecker {
         }
 
     }
+
     private int checkCardCount(String number){
         int temp = 0;
 

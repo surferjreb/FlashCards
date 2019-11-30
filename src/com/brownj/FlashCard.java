@@ -6,7 +6,6 @@ public class FlashCard {
     private static enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE};
     private final int MAXSEED = 12;
     private int result;
-    private int cardNumber;
     private String operator;
     private int digitCount;
     private Random rand;
@@ -14,29 +13,23 @@ public class FlashCard {
     private int num2;
     private String mathProblem;
 
-    FlashCard(int cardNumber, String operator, int digitCount){
-        this.cardNumber = cardNumber;
+    FlashCard(String operator, int digitCount){
+
         this.operator = operator;
         this.digitCount = digitCount;
         rand = new Random();
     }
 //----------------------------------------------------------------
-
-    String getCardNumber(){
-
-        return String.valueOf(cardNumber);
-    }
-//----------------------------------------------------------------
-    String getOperator(){
+    private String getOperator(){
 
         switch(operator){
             case "ADD" :
                         return "+";
             case "SUBTRACT":
                         return "-";
-            case "multiply":
+            case "MULTIPLY":
                         return "x";
-            case "divide":
+            case "DIVIDE":
                         return "/";
 
         }//end switch
@@ -64,8 +57,8 @@ public class FlashCard {
         this.result = result;
     }
 
-    int getResult(){
-        return result;
+    String getResult(){
+        return String.valueOf(result);
     }
 
 //------------------------------------------------------------------
@@ -102,10 +95,10 @@ public class FlashCard {
             case "SUBTRACT":
                         startSubtractCard();
                         break;
-            case "multiply":
+            case "MULTIPLY":
                         startMultiplyCard();
                         break;
-            case "divide":
+            case "DIVIDE":
                         startDivideCard();
                         break;
         }//end switch
@@ -156,10 +149,8 @@ public class FlashCard {
 
         setMathProblem(MAXSEED);
 
-        if(num1 > 0 && num2 > 0 ) {
-
+        if(num1 != 0 && num2 != 0) {
             setResult(divideValues(num1, num2));
-
         }
         else{
             startDivideCard();
@@ -184,6 +175,7 @@ public class FlashCard {
         else {
             minuend = num1 - num2;
         }
+
         return minuend;
 
     }
@@ -199,16 +191,13 @@ public class FlashCard {
     private int divideValues(int num1, int num2){
         int quotient = 0;
 
-        if(num1 !=0 && num2 !=0) {
             if (num2 > num1) {
                 quotient = num2 / num1;
             } else {
                 quotient = num1 / num2;
             }
 
-            return quotient;
-        }
-
         return quotient;
+
     }
 }//end class

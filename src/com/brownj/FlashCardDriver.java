@@ -12,9 +12,9 @@ public class FlashCardDriver {
         //For testing purpose in IDE
         String cardCount = "5";
         //String operator = args[1];
-        String operator = "add";
+        String operator = "subtract";
         //int digitCount = Integer.parseInt(args[2]);
-        String digitCount = "3";
+        String digitCount = "1";
         //test case
         args = new String[3];
         args[0] = cardCount;

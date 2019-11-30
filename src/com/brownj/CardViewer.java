@@ -2,49 +2,132 @@ package com.brownj;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-public class CardViewer {
-    private final String TITLE = "Flash Math";
+public class CardViewer extends JFrame implements ActionListener{
+
+
     private final int WIDTH = 200;
     private final int HEIGHT = 300;
     private JFrame myFrame;
-    private JLabel cardCount, mathProblem;
-    private int index;
+    private JLabel cardCount, answer, mathProblem, result, finalAnswer;
+    private JTextField userAnswer;
+    private JButton nextButton;
+
+    private int cardMaxIndex;
+    private int cardIndex;
+    private int displayIndex;
+    private int userCorrectIndex;
 
     private ArrayList<FlashCard> myCards;
 
+
     CardViewer(ArrayList<FlashCard> myCards){
-        myFrame = new JFrame(TITLE);
+        super("Flash Math");
         this.myCards = myCards;
-        this.index = 0;
+        this.cardMaxIndex = myCards.size();
+        this.cardIndex = 0;
+        this.displayIndex = 1;
     }
 
-    public void runViewCard(){
-        int cardIndex = setCardElements();
-        myFrame.setVisible(true);
+    void runViewCard(){
+
+            setCardElements();
+            setVisible(true);
+
     }
 
-    private int setCardElements(){
-        //this is temp
+    private void setCardElements(){
 
-            index = Integer.parseInt(myCards.get(index).getCardNumber()) + 1;
+            cardCount = new JLabel(displayIndex + " of " + cardMaxIndex);
+            mathProblem = new JLabel(myCards.get(cardIndex).getMathProblem());
+            answer = new JLabel("Answer: ");
+            result = new JLabel();
+            result.setVisible(false);
+            finalAnswer = new JLabel();
+            finalAnswer.setVisible(false);
+            userAnswer = new JTextField(10);
+            nextButton = new JButton("Next");
 
-            cardCount = new JLabel(index + " of " + myCards.size());
-            mathProblem = new JLabel(myCards.get(index - 1).getMathProblem());
+            setSize(WIDTH, HEIGHT);
 
-            JButton nextButton = new JButton("Next");
+            userAnswer.addActionListener(this);
+            userAnswer.setToolTipText("Hit enter to answer");
+            nextButton.addActionListener(this);
 
-            myFrame.setSize(WIDTH, HEIGHT);
-
-            myFrame.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
+            setLayout(new FlowLayout(FlowLayout.CENTER, 100, 15));
             //setVisible(true);
-            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            myFrame.add(cardCount);
-            myFrame.add(mathProblem);
-            myFrame.add(nextButton);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            add(cardCount);
+            add(mathProblem);
+            add(answer);
+            add(finalAnswer);
+            add(userAnswer);
+            add(result);
+            add(nextButton);
 
-            return index;
+    }
+
+    private void showResultCard(){
+        cardCount.setVisible(false);
+        mathProblem.setVisible(false);
+        answer.setText("You answered: ");
+        finalAnswer.setText(String.valueOf(userCorrectIndex)+ " out of " + cardMaxIndex);
+        finalAnswer.setVisible(true);
+        userAnswer.setVisible(false);
+        result.setVisible(false);
+    }
+
+    private boolean checkAnswer(String answer){
+
+        if(answer.equals(myCards.get(cardIndex).getResult())) {
+            userCorrectIndex++;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private void runCheckAnswer(String answer){
+
+        if(checkAnswer(answer)){
+            result.setText("CORRECT");
+            result.setVisible(true);
+        }
+        else{
+            result.setText("WRONG");
+            result.setVisible(true);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String action = e.getActionCommand();
+
+
+        if(action.equals("Next")){
+            cardIndex++;
+            if(cardIndex < cardMaxIndex) {
+                displayIndex++;
+
+                cardCount.setText(displayIndex + " of " + cardMaxIndex);
+                mathProblem.setText(myCards.get(cardIndex).getMathProblem());
+                userAnswer.setText(" ");
+                result.setText(" ");
+                result.setVisible(false);
+            }
+            else{
+                showResultCard();
+            }
+
+        }
+        else{
+
+            runCheckAnswer(e.getActionCommand().strip());
+
+        }
     }
 //    JFrame frame = new JFrame("Will this Work?");
 //    final JTextField text = new JTextField();
