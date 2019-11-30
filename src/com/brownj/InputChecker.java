@@ -2,7 +2,7 @@ package com.brownj;
 
 import java.util.InputMismatchException;
 
-public class InputChecker {
+class InputChecker {
 
     private int cardCount;
     private String operator;
@@ -10,12 +10,12 @@ public class InputChecker {
 
     private final int DEFAULT = 0;
 
-    private static enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE};
+    private enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE}
 
     //InputChecker(){}//constructor
 
     boolean checkValues(String[] args){
-        while(args != null) {
+        if(args != null) {
 
             switch(args.length){
                 case 2:
@@ -59,7 +59,7 @@ public class InputChecker {
     }
 
     private int checkCardCount(String number){
-        int temp = 0;
+        int temp;
 
         try{
             temp = Integer.parseInt(number);
@@ -86,7 +86,7 @@ public class InputChecker {
     }
 
     private int checkDigitNumber(String number){
-        int temp = 0;
+        int temp;
 
         try{
             temp = Integer.parseInt(number);

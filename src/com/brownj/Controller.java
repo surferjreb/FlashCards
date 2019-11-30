@@ -2,7 +2,7 @@ package com.brownj;
 
 import java.util.ArrayList;
 
-public class Controller {
+class Controller {
 
     private FlashCard myCard;
     private CardViewer myView;

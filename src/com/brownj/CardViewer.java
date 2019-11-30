@@ -73,7 +73,7 @@ public class CardViewer extends JFrame implements ActionListener{
         cardCount.setVisible(false);
         mathProblem.setVisible(false);
         answer.setText("You answered: ");
-        finalAnswer.setText(String.valueOf(userCorrectIndex)+ " out of " + cardMaxIndex);
+        finalAnswer.setText(userCorrectIndex + " out of " + cardMaxIndex);
         finalAnswer.setVisible(true);
         userAnswer.setVisible(false);
         result.setVisible(false);

@@ -2,8 +2,9 @@ package com.brownj;
 
 import java.util.Random;
 
-public class FlashCard {
-    private static enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE};
+class FlashCard {
+    private enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE}
+
     private final int MAXSEED = 12;
     private int result;
     private String operator;
@@ -106,9 +107,9 @@ public class FlashCard {
     }//end choose operator
 
     private int additionNumberLengthGenerator(int digitCount){
-        int temp = 0;
+        int temp;
         StringBuilder additionMax = new StringBuilder();
-        String number = " ";
+        String number;
 
         for(int i = 0; i < digitCount; i++){
             additionMax.append(9);
@@ -159,7 +160,7 @@ public class FlashCard {
     }
 //--------------------------------------------------------
     private int addValues(int num1, int num2){
-        int sum = 0;
+        int sum;
 
         sum = num1 + num2;
 
@@ -167,7 +168,7 @@ public class FlashCard {
     }
 
     private int subtractValues(int num1, int num2){
-        int minuend = 0;
+        int minuend;
 
         if(num2 > num1){
             minuend = num2 - num1;
@@ -181,7 +182,7 @@ public class FlashCard {
     }
 
     private int multiplyValues(int num1, int num2){
-        int product = 0;
+        int product;
 
         product = num1 * num2;
 
@@ -189,7 +190,7 @@ public class FlashCard {
     }
 
     private int divideValues(int num1, int num2){
-        int quotient = 0;
+        int quotient;
 
             if (num2 > num1) {
                 quotient = num2 / num1;
