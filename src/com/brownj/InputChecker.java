@@ -1,4 +1,4 @@
-package com.brownj;
+
 
 import java.util.InputMismatchException;
 
@@ -8,7 +8,7 @@ class InputChecker {
     private String operator;
     private int digitCount;
 
-    private final int DEFAULT = 0;
+    private final int DEFAULT = 12;
 
     private enum OPERATOR {ADD, SUBTRACT, MULTIPLY, DIVIDE}
 
@@ -40,20 +40,20 @@ class InputChecker {
             this.digitCount = DEFAULT;
         }
         catch(InputMismatchException e){
-            e.printStackTrace();
-            displayUsage();
+            
+            throw new InputMismatchException();
         }
     }
 
-    private void setAdditionValues(String[] args) {
+    private void setAdditionValues(String[] args){
         try {
             this.cardCount = checkCardCount(args[0]);
             this.operator = checkOperator(args[1]);
             this.digitCount = checkDigitNumber(args[2]);
         }
         catch(InputMismatchException b){
-            b.printStackTrace();
-            displayUsage();
+            
+            throw new InputMismatchException();
         }
 
     }
@@ -117,8 +117,10 @@ class InputChecker {
         System.out.println();
         System.out.print("\t<#card>    : The number of flash cards to be shown in\n"+
                 "\t\t\t\t succession on the screen from 1 to n.\n");
+        System.out.println();
         System.out.print("\t<operator> : The math operator to be practiced.  Choices are\n"+
                 "\t\t\t\t \"add\", \"subtract\", \"multiply\", \"divide\"/\n");
+        System.out.println();
         System.out.print("\t<#digits>  : The number of digits in each of the two\n" +
                 "\t\t\t\t operands.  This only applies to the \"add\"\n" +
                 "\t\t\t\t operator.  All other operators use numbers from 1\n"+

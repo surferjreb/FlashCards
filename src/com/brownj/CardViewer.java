@@ -1,4 +1,3 @@
-package com.brownj;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,9 +73,11 @@ public class CardViewer extends JFrame implements ActionListener{
         mathProblem.setVisible(false);
         answer.setText("You answered: ");
         finalAnswer.setText(userCorrectIndex + " out of " + cardMaxIndex);
+        result.setText("Correctly");
         finalAnswer.setVisible(true);
         userAnswer.setVisible(false);
-        result.setVisible(false);
+        
+        nextButton.setVisible(false);
     }
 
     private boolean checkAnswer(String answer){
@@ -129,5 +130,29 @@ public class CardViewer extends JFrame implements ActionListener{
 
         }
     }
-
+//    JFrame frame = new JFrame("Will this Work?");
+//    final JTextField text = new JTextField();
+//    final JLabel label1;
+//
+//    label1 = new JLabel("Some text here..");
+//    JButton butt = new JButton("Click");
+//        label1.setBounds(50, 25, 100, 30);
+//        butt.setBounds(width/4,100,100, 40);
+//        text.setBounds(50,50, 100, 40);
+//
+//        butt.addActionListener(new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            text.setText("It Works!!");
+//        }
+//    });
+//        frame.add(label1);
+//        frame.add(text);
+//        frame.add(butt);
+//
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        frame.setSize(width,height);
+//        frame.setLayout(null);
+//        frame.setVisible(true);
 }

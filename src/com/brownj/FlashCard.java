@@ -1,4 +1,4 @@
-package com.brownj;
+
 
 import java.util.Random;
 
@@ -110,14 +110,19 @@ class FlashCard {
         int temp;
         StringBuilder additionMax = new StringBuilder();
         String number;
+        
+        if(digitCount != MAXSEED ){
+         for(int i = 0; i < digitCount; i++){
+             additionMax.append(9);
+            }
 
-        for(int i = 0; i < digitCount; i++){
-            additionMax.append(9);
-        }
-
-        number = additionMax.toString();
-        temp = Integer.parseInt(number);
-
+         number = additionMax.toString();
+         temp = Integer.parseInt(number);
+         }
+         else{
+            temp = digitCount;
+         }
+         
         return temp;
     }
 //------------------------------------------------------------------

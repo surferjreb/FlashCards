@@ -1,4 +1,4 @@
-package com.brownj;
+
 
 import java.util.ArrayList;
 
@@ -19,9 +19,9 @@ class Controller {
     }
 
     void runController(InputChecker myInput){
-
+    
               generateFlashCard(myInput);
-
+     
     }//end runController
 
     private void generateFlashCard(InputChecker myInput){
