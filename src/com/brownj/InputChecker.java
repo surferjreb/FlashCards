@@ -1,6 +1,7 @@
-
+package com.brownj;
 
 import java.util.InputMismatchException;
+
 
 class InputChecker {
 

@@ -1,9 +1,11 @@
+package com.brownj;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class CardViewer extends JFrame implements ActionListener{
 
 
